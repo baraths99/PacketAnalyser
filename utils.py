@@ -1,3 +1,5 @@
+from ctypes import pydll
+
 import pyshark
 
 def print_ethernet_header(packet):
@@ -46,8 +48,7 @@ def print_encapsulated_packets(packet):
    if hasattr(packet, 'icmp'):
        print(packet.icmp)
 
-def display_packets(filename, count):
-    pcap = pyshark.FileCapture(filename)
+def display_packets(pcap,count):
     packet_counter = 0
     for packet in pcap:
        if packet_counter >= int(count):
@@ -59,3 +60,12 @@ def display_packets(filename, count):
        print_encapsulated_packets(packet)
        packet_counter+=1
 
+
+def filter_and_display_packet(args):
+    filename= args.filename
+    count = args.count
+    pcap = pyshark.FileCapture(filename)
+    if args.packettype:
+        packet_type = args.packettype
+        pcap = pyshark.FileCapture(filename,display_filter=packet_type)
+    display_packets(pcap,count)
