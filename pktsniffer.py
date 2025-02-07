@@ -19,9 +19,9 @@ def main() -> None:
     parser.add_argument('-c', '--count', type=int, help="Number of packets to capture or display.")
     parser.add_argument('-t', '--packettype', type=str, help="Filter based on packet type (e.g., 'TCP', 'UDP').")
     parser.add_argument('-host', '--host', type=str, help="Filter packets by host address.")
-    parser.add_argument('-p', '--port', type=str, help="Filter packets by port (e.g., '80').")
+    parser.add_argument('-port', '--port', type=str, help="Filter packets by port (e.g., '80').")
     parser.add_argument('-ip', '--ip', type=str, help="Filter packets by specific IP address.")
-    parser.add_argument('-n', '--net', type=str, help="Filter packets by network range (e.g., '192.168.1.0/24').")
+    parser.add_argument('-net', '--net', type=str, help="Filter packets by network range (e.g., '192.168.1.0/24').")
 
     args = parser.parse_args()
 
