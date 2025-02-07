@@ -1,6 +1,5 @@
 import argparse
 import utils
-from typing import Optional
 
 
 def main() -> None:
@@ -17,7 +16,7 @@ def main() -> None:
 
     parser.add_argument('-r', '--filename', type=str, help="The name of the pcap file to analyze.")
     parser.add_argument('-c', '--count', type=int, help="Number of packets to capture or display.")
-    parser.add_argument('-t', '--packettype', type=str, help="Filter based on packet type (e.g., 'TCP', 'UDP').")
+    parser.add_argument('-t', '--packettype', type=str, help="Filter based on packet type (e.g., 'tcp', 'usp').")
     parser.add_argument('-host', '--host', type=str, help="Filter packets by host address.")
     parser.add_argument('-port', '--port', type=str, help="Filter packets by port (e.g., '80').")
     parser.add_argument('-ip', '--ip', type=str, help="Filter packets by specific IP address.")

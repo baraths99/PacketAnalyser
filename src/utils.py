@@ -1,8 +1,5 @@
 import argparse
-
-
 import pyshark
-
 
 
 def print_ethernet_header(packet) -> None:
@@ -34,6 +31,7 @@ def print_IP_header(packet) -> None:
     print("IP HEADER")
     ip = packet.ip
     version = ip.version
+    type_of_service = ip.dsfield
     header_length = ip.hdr_len
     total_length = ip.len
     identification = ip.id
@@ -45,6 +43,7 @@ def print_IP_header(packet) -> None:
     source_ip_address = ip.src
     destination_ip_address = ip.dst
     print("Version: ".rjust(30) + version)
+    print("Type of Service: ".rjust(30) + type_of_service)
     print("Header Length: ".rjust(30) + header_length)
     print("Total Length: ".rjust(30) + total_length)
     print("Identification: ".rjust(30) + identification)
@@ -73,8 +72,15 @@ def print_encapsulated_packets(packet) -> None:
         print(packet.icmp)
 
 
-def print_IPV6_header(packet):
-    print("IP HEADER")
+def print_IPV6_header(packet) -> None:
+    """
+    Print the IPv6 header of a packet.
+
+    :param packet: A PyShark packet object containing IPv6 layer data.
+    :type packet: pyshark.packet.Packet
+    :return: None
+    """
+    print("IPV6 HEADER")
     print(packet.ipv6)
 
 def display_packets(pcap, count: str) -> None:
@@ -111,7 +117,6 @@ def filter_and_display_packet(args: argparse.Namespace) -> None:
     :return: None
     """
     filename = args.filename
-    pcap = pyshark.FileCapture(filename)
     count = 1000
     if args.count:
         count = args.count
